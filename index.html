@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commander Stats</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <h1>Commander Stats</h1>
+        <p>Fast game logging for Jeff's pod.</p>
+        <span id="storageMode" class="storage-badge">Storage: Local only</span>
+      </header>
+
+      <section class="panel summary-panel">
+        <div class="panel-title-row">
+          <h2>Summary</h2>
+          <span id="summaryGameCount" class="game-meta"></span>
+        </div>
+        <p class="summary-hint">Wins by pod member and top winning commanders. Uses all loaded games (Refresh updates this too).</p>
+        <div id="summaryContent" class="summary-content"></div>
+        <p id="summaryError" class="message error hidden" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Log New Game</h2>
+        <form id="gameForm" novalidate>
+          <div class="grid two-col">
+            <label>
+              Game Date
+              <input type="date" id="gameDate" required />
+            </label>
+            <label>
+              Game Length (minutes)
+              <input type="number" id="gameLengthMinutes" min="1" placeholder="e.g. 95" required />
+            </label>
+            <label>
+              Game End Turn
+              <input type="number" id="gameEndTurn" min="1" placeholder="e.g. 12" required />
+            </label>
+            <label>
+              Winner
+              <select id="winner" required></select>
+            </label>
+          </div>
+
+          <fieldset>
+            <legend>Players</legend>
+            <div id="playerFields" class="player-grid"></div>
+          </fieldset>
+
+          <label>
+            Notable Moments
+            <textarea
+              id="notableMoments"
+              rows="3"
+              placeholder="Big plays, blowouts, clutch top decks, hilarious moments..."
+            ></textarea>
+          </label>
+
+          <label id="pinFieldWrap" class="hidden">
+            Recorder PIN
+            <input type="password" id="recorderPin" autocomplete="off" placeholder="Optional shared write PIN" />
+          </label>
+
+          <div class="actions">
+            <button type="submit" id="saveBtn">Save Game</button>
+            <button type="button" id="clearBtn" class="secondary">Clear Form</button>
+          </div>
+          <p id="formMessage" class="message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title-row">
+          <h2>Recent Games</h2>
+          <button type="button" id="refreshBtn" class="secondary">Refresh</button>
+        </div>
+        <div id="gamesList" class="games-list"></div>
+      </section>
+    </main>
+
+    <script src="./config.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

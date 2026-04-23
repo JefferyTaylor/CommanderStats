@@ -1,0 +1,270 @@
+:root {
+  color-scheme: dark;
+  --bg: #121015;
+  --panel: #1b1822;
+  --panel-border: #3b3247;
+  --text: #efe8d8;
+  --muted: #b8ad9b;
+  --accent: #d1a354;
+  --accent-strong: #efbf6f;
+  --danger: #ff7d7d;
+  --ok: #91dd9a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #2a2135 0%, var(--bg) 45%);
+  color: var(--text);
+  font-family: Inter, Segoe UI, Roboto, sans-serif;
+}
+
+.app-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.app-header p {
+  margin: 0.35rem 0 0.65rem;
+  color: var(--muted);
+}
+
+.storage-badge {
+  display: inline-block;
+  border: 1px solid var(--panel-border);
+  background: #241f2d;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.panel {
+  background: linear-gradient(160deg, #201b2a, var(--panel));
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.player-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.player-card {
+  border: 1px solid #4a3f5a;
+  border-radius: 10px;
+  padding: 0.85rem;
+  background: #231d2d;
+}
+
+.player-card h3 {
+  margin: 0 0 0.65rem;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  color: var(--text);
+  background: #130f1a;
+  border: 1px solid #5a4c70;
+  border-radius: 8px;
+  padding: 0.65rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+fieldset {
+  border: 1px solid #4a3f5a;
+  border-radius: 8px;
+  margin: 1rem 0;
+  padding: 0.8rem;
+}
+
+legend {
+  color: var(--accent);
+  padding: 0 0.4rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+button {
+  border: 0;
+  border-radius: 9px;
+  padding: 0.65rem 0.95rem;
+  background: var(--accent);
+  color: #201806;
+  font-weight: 700;
+}
+
+button.secondary {
+  background: #3a3147;
+  color: var(--text);
+  border: 1px solid #6a5b82;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(1.07);
+}
+
+.message {
+  min-height: 1.2rem;
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+.message.error {
+  color: var(--danger);
+}
+
+.message.success {
+  color: var(--ok);
+}
+
+.panel-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.games-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.game-row {
+  border: 1px solid #4a3f5a;
+  border-radius: 9px;
+  padding: 0.7rem;
+  background: #211b2c;
+}
+
+.game-row strong {
+  color: var(--accent-strong);
+}
+
+.game-meta {
+  color: var(--muted);
+  margin-top: 0.35rem;
+  font-size: 0.92rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.summary-hint {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.summary-content {
+  display: grid;
+  gap: 1rem;
+}
+
+.summary-block h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.summary-table-wrap {
+  overflow-x: auto;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.summary-table th,
+.summary-table td {
+  border: 1px solid #4a3f5a;
+  padding: 0.45rem 0.55rem;
+  text-align: left;
+}
+
+.summary-table th {
+  background: #1a1524;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.summary-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-table tr:nth-child(even) td {
+  background: #1c1726;
+}
+
+.summary-lists {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (max-width: 720px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .app-shell {
+    padding: 0.8rem;
+  }
+}
