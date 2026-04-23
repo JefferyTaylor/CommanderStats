@@ -205,14 +205,54 @@ async function getSupabaseGamesAll() {
   return data.map(mapSupabaseRow);
 }
 
-function winningCommander(payload) {
+/** Remove MTG turn shorthand accidentally merged into commander (e.g. "Y'shtola T13" → "Y'shtola"). */
+function stripTrailingTurnFromCommander(commander) {
+  if (!commander || typeof commander !== "string") return commander;
+  return commander.replace(/\s+T\d+$/i, "").trim();
+}
+
+/** When payload line is like "WON T7. Tom, Henzie Killed…", recover commander for the winner. */
+function parseCommanderFromNotable(notable, winnerName) {
+  if (!notable || !winnerName || winnerName === "Draw") return null;
+  const escaped = winnerName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const patterns = [
+    new RegExp(
+      `\\bWON\\b\\s*T\\d+[.\\s]*\\s*${escaped}\\s*,\\s*([^|]+?)(?=\\s+Killed|\\s+Won\\b|,\\s*\\||$)`,
+      "i",
+    ),
+    new RegExp(`\\bWON\\.[\\s]*${escaped}\\s*,\\s*([^|]+?)(?=\\s+Killed|\\s*\\||$)`, "i"),
+    new RegExp(`\\bWON\\b[,\\s]+${escaped}\\s*,\\s*([^|]+?)(?=\\s+Killed|\\s*\\||$)`, "i"),
+  ];
+  for (const re of patterns) {
+    const m = notable.match(re);
+    if (m) {
+      const chunk = m[1].trim().split(/[|,]/)[0].trim();
+      return stripTrailingTurnFromCommander(chunk) || null;
+    }
+  }
+  return null;
+}
+
+/** Commander label for winner: structured rows first, then notable text, strip stray turn suffixes. */
+function displayWinnerCommander(payload) {
   if (!payload || payload.winner === "Draw") return null;
   const players = payload.players ?? [];
   const won = players.find((p) => p.won && p.name === payload.winner);
-  if (won?.commander && won.commander !== "Unknown") return won.commander;
-  const byName = players.find((p) => p.name === payload.winner);
-  if (byName?.commander && byName.commander !== "Unknown") return byName.commander;
-  return null;
+  let cmd = won?.commander ?? "";
+  if (!cmd || cmd === "Unknown") {
+    const byName = players.find((p) => p.name === payload.winner);
+    cmd = byName?.commander ?? "";
+  }
+  cmd = stripTrailingTurnFromCommander(cmd);
+  if (!cmd || cmd === "Unknown") {
+    cmd = parseCommanderFromNotable(payload.notableMoments ?? "", payload.winner) ?? "";
+  }
+  if (!cmd || cmd === "Unknown") return null;
+  return cmd;
+}
+
+function winningCommander(payload) {
+  return displayWinnerCommander(payload);
 }
 
 function gameYear(entry) {
@@ -360,8 +400,7 @@ function renderGames(games) {
   dom.gamesList.innerHTML = games
     .map(({ payload }) => {
       const isDraw = payload.winner === "Draw";
-      const winnerPlayer = payload.players.find((player) => player.won);
-      const commander = winnerPlayer ? winnerPlayer.commander : "Unknown";
+      const commander = displayWinnerCommander(payload) ?? "Unknown";
       return `
         <article class="game-row">
           <div><strong>${payload.date}</strong> - ${isDraw ? "<strong>Draw</strong>" : `Winner: <strong>${payload.winner}</strong> (${commander})`}</div>
