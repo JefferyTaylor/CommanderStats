@@ -1,4 +1,4 @@
-# CommanderStats
+# CommanderStats (https://jefferytaylor.github.io/CommanderStats/)
 
 Mobile-friendly MTG Commander game logger for Jeff, Chandler, Tom, and Noah.
 
