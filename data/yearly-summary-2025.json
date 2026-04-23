@@ -1,0 +1,130 @@
+{
+  "year": 2025,
+  "totals": {
+    "Jeff": 15,
+    "Chandler": 19,
+    "Noah": 21,
+    "Tom": 19,
+    "Guest (Yuta)": 1,
+    "Guest (Tratal)": 1,
+    "Guest (Peter)": 2
+  },
+  "byPlayer": {
+    "Jeff": {
+      "Obeka": {
+        "wins": 1,
+        "losses": 3
+      },
+      "The Beamtown Bullies": {
+        "wins": 1,
+        "losses": 4
+      },
+      "Rendmaw": {
+        "wins": 1,
+        "losses": 1
+      },
+      "Lisa": {
+        "wins": 2,
+        "losses": 6
+      },
+      "Jon": {
+        "wins": 0,
+        "losses": 3
+      },
+      "Vazi, Keen Negotiator": {
+        "wins": 1,
+        "losses": 2
+      }
+    },
+    "Chandler": {
+      "Hashaton": {
+        "wins": 3,
+        "losses": 6
+      },
+      "Cloud": {
+        "wins": 3,
+        "losses": 4
+      },
+      "Gishath": {
+        "wins": 1,
+        "losses": 3
+      },
+      "Orthion": {
+        "wins": 3,
+        "losses": 2
+      }
+    },
+    "Noah": {
+      "Azusa": {
+        "wins": 1,
+        "losses": 4
+      },
+      "Phalia": {
+        "wins": 0,
+        "losses": 1
+      },
+      "Lightning": {
+        "wins": 0,
+        "losses": 1
+      },
+      "Aurelia, the Law Above": {
+        "wins": 0,
+        "losses": 1
+      },
+      "Marneus Calgar": {
+        "wins": 1,
+        "losses": 5
+      },
+      "Kaalia": {
+        "wins": 1,
+        "losses": 3
+      },
+      "Araña": {
+        "wins": 2,
+        "losses": 2
+      },
+      "The Prismatic Bridge": {
+        "wins": 0,
+        "losses": 1
+      },
+      "Elsha": {
+        "wins": 1,
+        "losses": 1
+      },
+      "Alela": {
+        "wins": 0,
+        "losses": 1
+      }
+    },
+    "Tom": {
+      "Prossh": {
+        "wins": 3,
+        "losses": 4
+      },
+      "Radha, Heir to Keld": {
+        "wins": 1,
+        "losses": 3
+      },
+      "Ruby": {
+        "wins": 0,
+        "losses": 9
+      },
+      "Kenessos": {
+        "wins": 0,
+        "losses": 2
+      },
+      "Torens, Fist of Angels": {
+        "wins": 1,
+        "losses": 1
+      },
+      "Awaken the Blood Avatar": {
+        "wins": 0,
+        "losses": 2
+      }
+    },
+    "Guest (Yuta)": {},
+    "Guest (Tratal)": {},
+    "Guest (Peter)": {}
+  },
+  "guests": {}
+}
